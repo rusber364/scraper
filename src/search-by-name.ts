@@ -11,13 +11,14 @@ export type Song = {
 
 type Songs = Song[]
 
-export async function searchByName(searchName: string) {
+export async function searchByName(searchName: string, page?: string | string[]) {
   const songs: Songs = []
 
   try {
     const url = `/search?name=${searchName}`
     const { data: html } = await axios.get<string>(url, {
       headers: { 'Content-Type': 'text/html; charset=UTF-8' },
+      params: { page },
     })
     const $ = load(html)
     const songsElements = $('#entries').children()

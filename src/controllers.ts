@@ -5,7 +5,7 @@ import { searchByName, type Song } from './search-by-name.ts'
 export const router = new Router()
 
 router.get('/:search', async (ctx) => {
-  ctx.body = await searchByName(ctx.params.search)
+  ctx.body = await searchByName(ctx.params.search, ctx.query?.page)
 })
 
 router.get('/song/:id', async (ctx) => {
@@ -13,7 +13,7 @@ router.get('/song/:id', async (ctx) => {
 })
 
 router.get('/text/:search', async (ctx) => {
-  const searchSongs = await searchByName(ctx.params.search)
+  const searchSongs = await searchByName(ctx.params.search, ctx.query?.page)
   const songs: Record<string, Song> = {}
   const listSongs: Promise<Song>[] = []
 
