@@ -1,11 +1,20 @@
-function createUrlToSearch(input) {
-  //input.text (string)
-  //input.title (boolean)
-  //input.artist (boolean)
-  //input.lyrics (boolean)
-  //return 'https://domain.com/search'
-  //  + '?text=' + encodeURI(input.text);
+/**
+ * Represents the input parameter for the createUrlToSearch function.
+ *
+ * @typedef {Object} SearchInput
+ * @property {string} text - The search text.
+ * @property {boolean} [title] - Indicates whether to include title in the search.
+ * @property {boolean} [artist] - Indicates whether to include artist in the search.
+ * @property {boolean} [lyrics] - Indicates whether to include lyrics in the search.
+ */
 
+/**
+ * Generates a search URL based on the provided input parameters.
+ *
+ * @param {SearchInput} input - The input parameters for the search.
+ * @returns {string} The generated search URL.
+ */
+function createUrlToSearch(input) {
   var inputSearch = input.text.split('^')
   var text = inputSearch[0]
   var page = inputSearch[1]
@@ -13,6 +22,12 @@ function createUrlToSearch(input) {
   return 'http://localhost:3000/'.concat(encodeURI(text)).concat('?page=' + page)
 }
 
+/**
+ * Parses the search response JSON to a list of songs.
+ *
+ * @param {string} response - The JSON response from the search.
+ * @returns {Array<{ id: string, title: string, artist_or_author: string }>} The list of songs.
+ */
 function parseSearchResponseToList(response) {
   var json = JSON.parse(response)
   var songs = []
@@ -28,13 +43,22 @@ function parseSearchResponseToList(response) {
   return songs
 }
 
+/**
+ * Creates a URL to get song details by ID.
+ *
+ * @param {string} id - The ID of the song.
+ * @returns {string} The URL to get song details.
+ */
 function createUrlToGetById(id) {
-  //return 'https://domain.com/get'
-  //  + '?id=' + encodeURI(id);
-
   return 'http://localhost:3000/song/'.concat(id)
 }
 
+/**
+ * Parses the response JSON to get song details.
+ *
+ * @param {string} response - The JSON response from getting song details.
+ * @returns {{ title: string, artist: string, author: string, lyrics: string }} The song details.
+ */
 function parseGetResponseToSong(response) {
   var json = JSON.parse(response)
 
