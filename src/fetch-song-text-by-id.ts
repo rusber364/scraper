@@ -6,7 +6,7 @@ export async function fetchSongTextById(id: string): Promise<Song> {
   try {
     const { data: html } = await axios.get(id)
     const $ = load(html)
-    const title = $('.t-worship-leader__marquee__headline').text()
+    const title = $('.t-worship-leader__marquee__headline').text().replace(/^\s+/gm, '')
     const songElement = $('#music_text').text()
     let text = songElement.replace(/[A-Za-z].*\n/g, '').replace(/^\s+/gm, '')
 
