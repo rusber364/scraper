@@ -14,10 +14,11 @@ router.get('/:search', async (ctx) => {
 router.get('/text/:search', async (ctx) => {
   const searchSongs = await searchByName(ctx.params.search)
   const songs: Record<string, Song> = {}
+  const listSongs: Promise<Song>[] = []
 
-  for await (let { id, title } of await Promise.all(searchSongs)) {
-    const { lyrics } = await fetchSongTextById(id)
+  searchSongs.forEach(({ id }) => listSongs.push(fetchSongTextById(id)))
 
+  for (let { id, title, lyrics } of await Promise.all(listSongs)) {
     songs[id] = {
       id,
       title,
