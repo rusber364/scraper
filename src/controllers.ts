@@ -9,7 +9,7 @@ router.get('/:search', async (ctx) => {
 })
 
 router.get('/song/:id', async (ctx) => {
-  ctx.body = await fetchSongTextById(`/${ctx.params.id}`)
+  ctx.body = await fetchSongTextById(ctx.params.id)
 })
 
 router.get('/text/:search', async (ctx) => {
