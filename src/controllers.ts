@@ -1,6 +1,6 @@
 import Router from '@koa/router'
-import { fetchSongTextById } from './fetch-song-text-by-id.ts'
-import { searchByName, type Song } from './search-by-name.ts'
+import { fetchSongTextById } from './api/fetch-song-text-by-id.ts'
+import { searchByName, type Song } from './api/search-by-name.ts'
 
 export const router = new Router()
 
