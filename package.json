@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/main.ts"
+    "dev": "tsx watch src/main.ts",
+    "convert": "tsx src/utils/convertSong.ts"
   },
   "dependencies": {
     "@koa/router": "^12.0.1",
