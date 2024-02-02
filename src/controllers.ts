@@ -5,6 +5,8 @@ import psalms from '../psalms/Загальний спів.json'
 
 export const router = new Router()
 
+type IdPsalms = keyof typeof psalms
+
 router.get('/:search', async (ctx) => {
   ctx.body = await searchByName(ctx.params.search, ctx.query?.page)
 })
@@ -15,20 +17,13 @@ router.get('/song/:id', async (ctx) => {
 
 router.get('/psalms/:search', async (ctx) => {
   const searchTitle = new RegExp(ctx.params.search, 'i')
-  const filteredIds = Object.keys(psalms).filter((id) => {
-    // @ts-ignore
-    return searchTitle.test(psalms[id].title)
-  })
+  const filteredIds = Object.keys(psalms).filter((id) => searchTitle.test(psalms[id as IdPsalms].title))
 
-  ctx.body = filteredIds.map((id) => {
-    // @ts-ignore
-    return psalms[id]
-  })
+  ctx.body = filteredIds.map((id) => psalms[id as IdPsalms])
 })
 
 router.get('/psalms/song/:id', async (ctx) => {
-  // @ts-ignore
-  ctx.body = psalms[ctx.params.id]
+  ctx.body = psalms[ctx.params.id as IdPsalms]
 })
 
 router.get('/text/:search', async (ctx) => {
