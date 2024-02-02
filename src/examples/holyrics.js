@@ -1,3 +1,6 @@
+// var host = 'http://localhost:3000/'
+var host = 'http://localhost:3000/psalms/'
+
 /**
  * Represents the input parameter for the createUrlToSearch function.
  *
@@ -19,7 +22,7 @@ function createUrlToSearch(input) {
   var text = inputSearch[0]
   var page = inputSearch[1]
 
-  return 'http://localhost:3000/'.concat(encodeURI(text)).concat('?page=' + page)
+  return host.concat(encodeURI(text)).concat('?page=' + page)
 }
 
 /**
@@ -50,7 +53,7 @@ function parseSearchResponseToList(response) {
  * @returns {string} The URL to get song details.
  */
 function createUrlToGetById(id) {
-  return 'http://localhost:3000/song/'.concat(id)
+  return host.concat('song/').concat(id)
 }
 
 /**
