@@ -9,7 +9,6 @@ try {
   const currentFile = path.resolve(process.cwd(), fileName)
   const songs = await fs.readFile(currentFile)
   const newPathFile = currentFile.replace('.sog', '.json')
-  const { name: nameFile } = path.parse(currentFile)
   const parsedSongs: Record<string, Song> = {}
 
   songs
@@ -18,7 +17,7 @@ try {
     .forEach((song, idx) => {
       const songLines = song.split('\r\n')
       const [_, title] = songLines.splice(0, 2)
-      const id = md5(`${nameFile}-${idx + 100_000}`)
+      const id = md5(`${title}-${idx + 100_000}`)
 
       parsedSongs[id] = { id, title, lyrics: songLines.join('\n') }
     })
