@@ -1,5 +1,5 @@
-export function capitalize(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
+export function capitalize(line: string) {
+  return line.charAt(0).toUpperCase().concat(line.slice(1))
 }
 
 export function lineCapitalized(line: string) {
