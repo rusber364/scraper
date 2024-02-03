@@ -1,7 +1,7 @@
 import Router from '@koa/router'
 import { fetchSongTextById } from './api/fetch-song-text-by-id.ts'
 import { searchByName, type Song } from './api/search-by-name.ts'
-import psalms from '../psalms/Загальний спів.json'
+import psalms from '../psalms/all.json'
 import { getPsalmsBySearching, getPsalmById } from './utils/get-psalms.ts'
 
 export const router = new Router()
