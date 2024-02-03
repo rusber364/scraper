@@ -4,6 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/main.ts",
+    "bundle": "esbuild src/main.ts --bundle --platform=node --outfile=build/scraper.cjs",
+    "blob": "node --experimental-sea-config sea-config.json",
+    "create_executable": "node -e \"require('fs').copyFileSync(process.execPath, 'build/scraper.exe')\"",
+    "inject": "pnpx postject build/scraper.exe NODE_SEA_BLOB build/scraper.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2",
+    "build": "pnpm bundle & pnpm blob & pnpm create_executable & pnpm inject",
     "convert": "tsx src/utils/convert-song.ts"
   },
   "dependencies": {
@@ -17,6 +22,7 @@
     "@types/koa": "^2.14.0",
     "@types/koa__router": "^12.0.4",
     "@types/node": "^20.11.10",
+    "esbuild": "^0.20.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   }
