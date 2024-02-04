@@ -1,25 +1,16 @@
 import Router from '@koa/router'
 import { fetchSongTextById } from './api/fetch-song-text-by-id.ts'
-import { searchByName, type Song } from './api/search-by-name.ts'
-import psalms from '../psalms/all.json'
-import { getPsalmsBySearching, getPsalmById } from './utils/get-psalms.ts'
+import { searchByName } from './api/search-by-name.ts'
+import type { Song } from '../../types.ts'
 
-export const router = new Router()
+export const router = new Router({ prefix: '/holychords' })
 
-router.get('/holychords/:search', async (ctx) => {
+router.get('/:search', async (ctx) => {
   ctx.body = await searchByName(ctx.params.search, ctx.query?.page)
 })
 
-router.get('/holychords/song/:id', async (ctx) => {
+router.get('/song/:id', async (ctx) => {
   ctx.body = await fetchSongTextById(ctx.params.id)
-})
-
-router.get('/psalms/:search', async (ctx) => {
-  ctx.body = getPsalmsBySearching(ctx.params.search, psalms as Record<string, Song>).list
-})
-
-router.get('/psalms/song/:id', async (ctx) => {
-  ctx.body = getPsalmById(ctx.params.id, psalms as Record<string, Song>)
 })
 
 router.get('/text/:search', async (ctx) => {
@@ -39,3 +30,5 @@ router.get('/text/:search', async (ctx) => {
 
   ctx.body = songs
 })
+
+export default router
