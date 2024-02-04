@@ -1,4 +1,4 @@
-var host = 'http://localhost:3000'
+var host
 
 /**
  * Represents the input parameter for the createUrlToSearch function.
@@ -20,15 +20,12 @@ function createUrlToSearch(input) {
   // var isLocal = new RegExp('@').test(input.text)
   // var inputSearch = input.text.replace('@', '').split('^')
   var isLocal = !input.lyrics
-  var pathPrefix = isLocal ? '/psalms/' : '/holychords/'
+  host = isLocal ? 'http://localhost:3000/psalms/' : 'http://localhost:3000/holychords/'
   var inputSearch = input.text.split('^')
   var text = inputSearch[0]
   var page = inputSearch[1]
 
-  return host
-    .concat(pathPrefix)
-    .concat(encodeURI(text))
-    .concat('?page=' + page)
+  return host.concat(encodeURI(text)).concat('?page=' + page)
 }
 
 /**
