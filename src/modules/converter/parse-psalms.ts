@@ -1,5 +1,5 @@
 import { md5 } from 'js-md5'
-import type { Song } from '../types.ts'
+import type { Song } from '../../types.ts'
 import { lineCapitalized } from './capitalize.ts'
 
 export function parsePsalms(psalms: Buffer) {

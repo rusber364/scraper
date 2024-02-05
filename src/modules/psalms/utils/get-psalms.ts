@@ -1,4 +1,4 @@
-import type { Song } from '../types.ts'
+import type { Song } from '../../../types.ts'
 
 export function getPsalmsBySearching<T extends Record<string, Song>>(search: string, psalms: T) {
   const searchTitle = new RegExp(search, 'i')
