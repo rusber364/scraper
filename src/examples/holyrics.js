@@ -24,12 +24,18 @@ function matchHost(search) {
 
   switch (prefix) {
     case '1':
-      return { host: baseUrl.concat('/fonki/'), inputText: inputText }
+      host = baseUrl.concat('/fonki/')
+      break
+
     case '2':
-      return { host: baseUrl.concat('/holychords/'), inputText: inputText }
+      host = baseUrl.concat('/holychords/')
+      break
+
     default:
-      return { host: baseUrl.concat('/psalms/'), inputText: inputText }
+      host = baseUrl.concat('/psalms/')
   }
+
+  return inputText
 }
 
 /**
@@ -49,9 +55,8 @@ function matchHost(search) {
  * @returns {string} The generated search URL.
  */
 function createUrlToSearch(input) {
-  var matched = matchHost(input.text)
-  host = matched.host
-  var inputSearch = matched.inputText.split('^')
+  var inputText = matchHost(input.text)
+  var inputSearch = inputText.split('^')
   var text = inputSearch[0]
   var page = inputSearch[1] || ''
 
