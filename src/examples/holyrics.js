@@ -1,4 +1,36 @@
 var host
+// 1:name -> fonki
+// 2:name -> holychords
+// name -> psalms
+
+/**
+ * Represents a search result containing the host URL and input text.
+ * @typedef {Object} SearchResult
+ * @property {string} host - The host URL.
+ * @property {string} inputText - The input text extracted from the search string.
+ */
+
+/**
+ * Matches the search string prefix to a specific host and extracts input text.
+ * @param {string} search - The search string, optionally prefixed with a number.
+ * @returns {SearchResult} An object containing the matched host URL and input text.
+ */
+function matchHost(search) {
+  var baseUrl = 'http://localhost:3000'
+
+  var results = search.split(':')
+  var prefix = results[0]
+  var inputText = results[1] || search
+
+  switch (prefix) {
+    case '1':
+      return { host: baseUrl.concat('/fonki/'), inputText: inputText }
+    case '2':
+      return { host: baseUrl.concat('/holychords/'), inputText: inputText }
+    default:
+      return { host: baseUrl.concat('/psalms/'), inputText: inputText }
+  }
+}
 
 /**
  * Represents the input parameter for the createUrlToSearch function.
@@ -17,13 +49,11 @@ var host
  * @returns {string} The generated search URL.
  */
 function createUrlToSearch(input) {
-  // var isLocal = new RegExp('@').test(input.text)
-  // var inputSearch = input.text.replace('@', '').split('^')
-  var isLocal = !input.lyrics
-  host = isLocal ? 'http://localhost:3000/psalms/' : 'http://localhost:3000/holychords/'
-  var inputSearch = input.text.split('^')
+  var matched = matchHost(input.text)
+  host = matched.host
+  var inputSearch = matched.inputText.split('^')
   var text = inputSearch[0]
-  var page = inputSearch[1]
+  var page = inputSearch[1] || ''
 
   return host.concat(encodeURI(text)).concat('?page=' + page)
 }
