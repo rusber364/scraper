@@ -2,6 +2,7 @@ import { load } from 'cheerio'
 import axios from 'axios'
 import type { Songs } from '../../../types.ts'
 import { baseURL } from '../config.ts'
+import { createId } from '../../../utils/id.ts'
 
 export async function searchByName(searchName: string, page?: string | string[]) {
   const songs: Songs = []
@@ -18,8 +19,8 @@ export async function searchByName(searchName: string, page?: string | string[])
 
     songsElements.each((_, element) => {
       const songElement = $(element).find('.media-body.text-truncate a')
-      const id = songElement.attr('href')?.replace('/', '')
       const nameSong = songElement.text().trim()
+      const id = createId(nameSong, songElement.attr('href'))
 
       if (id && nameSong.length) {
         songs.push({ id, title: nameSong })
