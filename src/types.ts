@@ -9,6 +9,7 @@ export type Song = {
 export type Songs = Song[]
 
 export type SongOption = {
+  routePrefix: string
   baseURL: string
   titleSelector: string
   textSelector: string

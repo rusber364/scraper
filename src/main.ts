@@ -1,9 +1,12 @@
 import Koa from 'koa'
 import { router as psalmsRouter } from './modules/psalms/controllers.ts'
-import holychordsRouter from './modules/holychords/router.ts'
-import fonkiRouter from './modules/fonki/router.ts'
+import { createRouter } from './utils/createRouter.ts'
+import { fonki, holychords } from './configs.ts'
 
 const app = new Koa()
+
+const fonkiRouter = createRouter(fonki)
+const holychordsRouter = createRouter(holychords)
 
 app.use(psalmsRouter.routes()).use(psalmsRouter.allowedMethods())
 app.use(holychordsRouter.routes()).use(holychordsRouter.allowedMethods())

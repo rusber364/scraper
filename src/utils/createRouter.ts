@@ -4,8 +4,8 @@ import { fetchSongsTextBySearching } from '../api/fetchSongsTextBySearching.ts'
 import { searchByName } from '../api/searchByName.ts'
 import type { SongOption } from '../types.ts'
 
-export function createRouter(prefix: string, config: SongOption) {
-  const router = new Router({ prefix })
+export function createRouter(config: SongOption) {
+  const router = new Router({ prefix: config.routePrefix })
 
   router.get('/:search', async (ctx) => {
     ctx.body = await searchByName(ctx.params.search, config, ctx.query?.page)
