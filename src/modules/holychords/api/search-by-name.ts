@@ -1,7 +1,7 @@
 import { load } from 'cheerio'
 import axios from 'axios'
 import type { Songs } from '../../../types.ts'
-import { baseURL } from '../config.ts'
+import { config } from '../config.ts'
 import { createId } from '../../../utils/id.ts'
 
 export async function searchByName(searchName: string, page?: string | string[]) {
@@ -11,7 +11,7 @@ export async function searchByName(searchName: string, page?: string | string[])
     const url = `/search?name=${searchName}`
     const { data: html } = await axios.get<string>(url, {
       headers: { 'Content-Type': 'text/html; charset=UTF-8' },
-      baseURL,
+      baseURL: config.baseURL,
       params: { page },
     })
     const $ = load(html)

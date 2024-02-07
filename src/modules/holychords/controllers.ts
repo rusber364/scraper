@@ -1,7 +1,8 @@
 import Router from '@koa/router'
-import { fetchSongTextById } from './api/fetch-song-text-by-id.ts'
 import { searchByName } from './api/search-by-name.ts'
 import type { Song } from '../../types.ts'
+import { fetchSongTextById } from '../../api/fetchSongTextById.ts'
+import { config } from './config.ts'
 
 export const router = new Router({ prefix: '/holychords' })
 
@@ -10,7 +11,7 @@ router.get('/:search', async (ctx) => {
 })
 
 router.get('/song/:id', async (ctx) => {
-  ctx.body = await fetchSongTextById(ctx.params.id)
+  ctx.body = await fetchSongTextById(ctx.params.id, config)
 })
 
 router.get('/text/:search', async (ctx) => {
@@ -18,7 +19,7 @@ router.get('/text/:search', async (ctx) => {
   const songs: Record<string, Song> = {}
   const listSongs: Promise<Song>[] = []
 
-  searchSongs.forEach(({ id }) => listSongs.push(fetchSongTextById(id)))
+  searchSongs.forEach(({ id }) => listSongs.push(fetchSongTextById(id, config)))
 
   for (let { id, title, lyrics } of await Promise.all(listSongs)) {
     songs[id] = {

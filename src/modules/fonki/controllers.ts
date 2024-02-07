@@ -1,6 +1,7 @@
 import Router from '@koa/router'
 import { searchByName } from './api/search-by-name.ts'
-import { fetchSongTextById } from './api/fetch-song-text-by-id.ts'
+import { fetchSongTextById } from '../../api/fetchSongTextById.ts'
+import { config } from './config.ts'
 
 export const router = new Router({ prefix: '/fonki' })
 
@@ -9,5 +10,5 @@ router.get('/:search', async (ctx) => {
 })
 
 router.get('/song/:id', async (ctx) => {
-  ctx.body = await fetchSongTextById(ctx.params.id)
+  ctx.body = await fetchSongTextById(ctx.params.id, config)
 })
