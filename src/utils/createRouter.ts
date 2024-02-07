@@ -8,7 +8,7 @@ export function createRouter(config: Config) {
   const router = new Router({ prefix: config.routePrefix })
 
   router.get('/:search', async (ctx) => {
-    ctx.body = await searchByName(ctx.params.search, config, ctx.query?.page)
+    ctx.body = await searchByName(ctx.params.search, config)
   })
 
   router.get('/song/:id', async (ctx) => {
@@ -16,7 +16,7 @@ export function createRouter(config: Config) {
   })
 
   router.get('/text/:search', async (ctx) => {
-    ctx.body = await fetchSongsTextBySearching(ctx.params.search, config, ctx.query?.page)
+    ctx.body = await fetchSongsTextBySearching(ctx.params.search, config)
   })
 
   return router

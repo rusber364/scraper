@@ -56,11 +56,8 @@ function matchHost(search) {
  */
 function createUrlToSearch(input) {
   var inputText = matchHost(input.text)
-  var inputSearch = inputText.split('^')
-  var text = inputSearch[0]
-  var page = inputSearch[1] || ''
 
-  return host.concat(encodeURI(text)).concat('?page=' + page)
+  return host.concat(encodeURI(inputText))
 }
 
 /**
