@@ -1,9 +1,9 @@
 import axios from 'axios'
-import type { Song, SongOption } from '../types.ts'
+import type { Song, Config } from '../types.ts'
 import { getModelFromHtml } from '../utils/getModelFromHtml.ts'
 import { getHrefById } from '../utils/id.ts'
 
-export async function fetchSongTextById(id: string, options: SongOption): Promise<Song> {
+export async function fetchSongTextById(id: string, options: Config): Promise<Song> {
   try {
     const href = getHrefById(id)
     const { baseURL, titleSelector, textSelector } = options

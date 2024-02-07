@@ -1,6 +1,6 @@
-import { SongOption } from './types.ts'
+import type { Config } from './types.ts'
 
-export const fonki: SongOption = {
+export const fonki: Config = {
   routePrefix: '/fonki',
   baseURL: 'https://fonki.pro',
   titleSelector: '.entry-title.text-truncate',
@@ -15,7 +15,7 @@ export const fonki: SongOption = {
   },
 }
 
-export const holychords: SongOption = {
+export const holychords: Config = {
   routePrefix: '/holychords',
   baseURL: 'https://holychords.pro',
   titleSelector: 'h2.t-worship-leader__marquee__headline.mb-0',

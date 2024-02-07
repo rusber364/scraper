@@ -1,8 +1,8 @@
 import axios from 'axios'
-import type { SongOption } from '../types.ts'
+import type { Config } from '../types.ts'
 import { getSongListFromHtml } from '../utils/getSongListFromHtml.ts'
 
-export async function searchByName(searchName: string, config: SongOption, ctxPage?: string | string[]) {
+export async function searchByName(searchName: string, config: Config, ctxPage?: string | string[]) {
   try {
     const { baseURL, searching } = config
     const { songsSelector, songSelector, urlKey, page } = searching

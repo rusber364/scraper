@@ -1,8 +1,8 @@
-import type { Song, SongOption } from '../types.ts'
+import type { Song, Config } from '../types.ts'
 import { fetchSongTextById } from './fetchSongTextById.ts'
 import { searchByName } from './searchByName.ts'
 
-export async function fetchSongsTextBySearching(search: string, config: SongOption, ctxPage?: string | string[]) {
+export async function fetchSongsTextBySearching(search: string, config: Config, ctxPage?: string | string[]) {
   const searchSongs = await searchByName(search, config, ctxPage)
   const songs: Record<string, Song> = {}
   const listSongs: Promise<Song>[] = []

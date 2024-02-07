@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/main.ts",
+    "types": "tsc --noEmit",
     "bundle": "esbuild src/main.ts --bundle --platform=node --outfile=build/scraper.cjs",
     "blob": "node --experimental-sea-config sea-config.json",
     "create_executable": "node -e \"require('fs').copyFileSync(process.execPath, 'build/scraper.exe')\"",
