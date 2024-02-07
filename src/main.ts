@@ -1,7 +1,7 @@
 import Koa from 'koa'
 import { router as psalmsRouter } from './modules/psalms/controllers.ts'
-import { router as holychordsRouter } from './modules/holychords/controllers.ts'
-import { router as fonkiRouter } from './modules/fonki/controllers.ts'
+import holychordsRouter from './modules/holychords/router.ts'
+import fonkiRouter from './modules/fonki/router.ts'
 
 const app = new Koa()
 
