@@ -1,5 +1,7 @@
 import { md5 } from 'js-md5'
-import type { Song } from '../../types.ts'
+
+import type { Song } from '~/types.ts'
+
 import { lineCapitalized } from './capitalize.ts'
 
 export function parsePsalms(psalms: Buffer) {
@@ -11,6 +13,7 @@ export function parsePsalms(psalms: Buffer) {
     .split('\r\n\r\n')
     .forEach((song, idx) => {
       const songLines = song.split('\r\n')
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [_, title] = songLines.splice(0, 2)
       const id = md5(`${title}-${idx + 100_000}`)
 

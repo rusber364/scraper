@@ -1,4 +1,5 @@
 import { load } from 'cheerio'
+
 import { cleanLine } from './cleanLine.ts'
 
 export function getModelFromHtml(html: string, titleSelector: string, textSelector: string) {

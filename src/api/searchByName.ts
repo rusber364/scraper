@@ -1,6 +1,7 @@
 import axios from 'axios'
-import type { Config } from '../types.ts'
-import { getSongListFromHtml } from '../utils/getSongListFromHtml.ts'
+
+import type { Config } from '~/types.ts'
+import { getSongListFromHtml } from '~/utils/getSongListFromHtml.ts'
 
 export async function searchByName(search: string, config: Config) {
   try {

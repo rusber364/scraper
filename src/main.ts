@@ -1,7 +1,8 @@
 import Koa from 'koa'
+
+import { fonki, holychords } from './configs.ts'
 import { router as psalmsRouter } from './modules/psalms/controllers.ts'
 import { createRouter } from './utils/createRouter.ts'
-import { fonki, holychords } from './configs.ts'
 
 const app = new Koa()
 

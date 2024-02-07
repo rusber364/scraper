@@ -1,5 +1,7 @@
 import { load } from 'cheerio'
-import { Songs } from '../types.ts'
+
+import type { Songs } from '~/types.ts'
+
 import { createId } from './id.ts'
 
 export function getSongListFromHtml(html: string, songsSelector: string, songSelector: string) {

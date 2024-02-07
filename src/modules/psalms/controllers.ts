@@ -1,7 +1,9 @@
 import Router from '@koa/router'
-import psalms from '../../../database/all.json'
-import { getPsalmsBySearching, getPsalmById } from './utils/get-psalms.ts'
-import { Song } from '../../types.ts'
+
+import psalms from '@/all.json'
+import { Song } from '~/types.ts'
+
+import { getPsalmById, getPsalmsBySearching } from './utils/get-psalms.ts'
 
 export const router = new Router({ prefix: '/psalms' })
 

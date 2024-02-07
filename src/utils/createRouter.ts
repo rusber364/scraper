@@ -1,8 +1,9 @@
 import Router from '@koa/router'
-import { fetchSongTextById } from '../api/fetchSongTextById.ts'
-import { fetchSongsTextBySearching } from '../api/fetchSongsTextBySearching.ts'
-import { searchByName } from '../api/searchByName.ts'
-import type { Config } from '../types.ts'
+
+import { fetchSongsTextBySearching } from '~/api/fetchSongsTextBySearching.ts'
+import { fetchSongTextById } from '~/api/fetchSongTextById.ts'
+import { searchByName } from '~/api/searchByName.ts'
+import type { Config } from '~/types.ts'
 
 export function createRouter(config: Config) {
   const router = new Router({ prefix: config.routePrefix })

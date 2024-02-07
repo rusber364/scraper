@@ -1,4 +1,5 @@
-import type { Song, Config } from '../types.ts'
+import type { Config, Song } from '~/types.ts'
+
 import { fetchSongTextById } from './fetchSongTextById.ts'
 import { searchByName } from './searchByName.ts'
 
@@ -9,7 +10,7 @@ export async function fetchSongsTextBySearching(search: string, config: Config) 
 
   searchSongs?.forEach(({ id }) => listSongs.push(fetchSongTextById(id, config)))
 
-  for (let { id, title, lyrics } of await Promise.all(listSongs)) {
+  for (const { id, title, lyrics } of await Promise.all(listSongs)) {
     songs[id] = { id, title, lyrics }
   }
 
