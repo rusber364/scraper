@@ -10,17 +10,23 @@ export function createRouter(config: Config) {
 
   router.get('/:search', async (ctx) => {
     const searchParam = ctx.req.param().search
-    return ctx.json(await searchByName(searchParam, config))
+    const songs = await searchByName(searchParam, config)
+
+    return ctx.json(songs)
   })
 
   router.get('/song/:id', async (ctx) => {
     const idParam = ctx.req.param().id
-    return ctx.json(await fetchSongTextById(idParam, config))
+    const song = await fetchSongTextById(idParam, config)
+
+    return ctx.json(song)
   })
 
   router.get('/text/:search', async (ctx) => {
     const searchParam = ctx.req.param().search
-    return ctx.json(await fetchSongsTextBySearching(searchParam, config))
+    const songs = await fetchSongsTextBySearching(searchParam, config)
+
+    return ctx.json(songs)
   })
 
   return router
