@@ -1,4 +1,4 @@
-import Router from '@koa/router'
+import { Hono } from 'hono'
 
 import { fetchSongsTextBySearching } from '~/api/fetchSongsTextBySearching.ts'
 import { fetchSongTextById } from '~/api/fetchSongTextById.ts'
@@ -6,18 +6,21 @@ import { searchByName } from '~/api/searchByName.ts'
 import type { Config } from '~/types.ts'
 
 export function createRouter(config: Config) {
-  const router = new Router({ prefix: config.routePrefix })
+  const router = new Hono()
 
   router.get('/:search', async (ctx) => {
-    ctx.body = await searchByName(ctx.params.search, config)
+    const searchParam = ctx.req.param().search
+    return ctx.json(await searchByName(searchParam, config))
   })
 
   router.get('/song/:id', async (ctx) => {
-    ctx.body = await fetchSongTextById(ctx.params.id, config)
+    const idParam = ctx.req.param().id
+    return ctx.json(await fetchSongTextById(idParam, config))
   })
 
   router.get('/text/:search', async (ctx) => {
-    ctx.body = await fetchSongsTextBySearching(ctx.params.search, config)
+    const searchParam = ctx.req.param().search
+    return ctx.json(await fetchSongsTextBySearching(searchParam, config))
   })
 
   return router

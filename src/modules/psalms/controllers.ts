@@ -1,16 +1,18 @@
-import Router from '@koa/router'
+import { Hono } from 'hono'
 
 import psalms from '@/all.json'
 import { Song } from '~/types.ts'
 
 import { getPsalmById, getPsalmsBySearching } from './utils/get-psalms.ts'
 
-export const router = new Router({ prefix: '/psalms' })
+export const router = new Hono()
 
 router.get('/:search', async (ctx) => {
-  ctx.body = getPsalmsBySearching(ctx.params.search, psalms as Record<string, Song>).list
+  const searchParam = ctx.req.param().search
+  return ctx.json(getPsalmsBySearching(searchParam, psalms as Record<string, Song>).list)
 })
 
 router.get('/song/:id', async (ctx) => {
-  ctx.body = getPsalmById(ctx.params.id, psalms as Record<string, Song>)
+  const idParam = ctx.req.param().id
+  return ctx.json(getPsalmById(idParam, psalms as Record<string, Song>) ?? {})
 })
