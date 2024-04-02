@@ -18,6 +18,6 @@ app.route(holychords.routePrefix, holychordsRouter)
 app.route(`/psalms`, psalmsRouter)
 
 const port = definePort()
-console.log(`Server is running on port ${port}`)
+console.log(`Server is running on port http://localhost:${port}`)
 
 serve({ fetch: app.fetch, port })
