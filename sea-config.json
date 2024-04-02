@@ -1,5 +1,0 @@
-{
-    "main": "build/scraper.cjs",
-    "output": "build/scraper.blob",
-    "disableExperimentalSEAWarning": true
-}
