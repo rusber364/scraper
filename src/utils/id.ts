@@ -1,7 +1,8 @@
-import { md5 } from 'js-md5'
+import { sha256 } from './sha256.ts'
 
 export function createId(nameSong: string, href = '') {
-  return `${md5(nameSong)}-${href}`.replaceAll('/', '+')
+  const hash = sha256(nameSong)
+  return `${hash}-${href}`.replaceAll('/', '+')
 }
 
 export function getHrefById(id: string) {
