@@ -6,8 +6,8 @@
     "dev": "bun --watch src/main.ts",
     "build:cli": "bun build ./src/main.ts --compile --minify --outfile=./build/scraper-cli",
     "check": "biome check --write ./src",
-		"lint": "biome lint --write ./src",
-		"format": "biome format --write ./src",
+    "lint": "biome lint --write ./src",
+    "format": "biome format --write ./src",
     "converter": "bun src/modules/converter/main.ts"
   },
   "dependencies": {
@@ -21,13 +21,6 @@
     "@biomejs/biome": "1.8.3",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^20.11.10",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "prettier": "^3.2.5",
     "typescript": "^5.3.3"
   }
 }
