@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 
 import psalms from '@/all.json'
-import { Song } from '~/types.ts'
+import type { Song } from '~/types.ts'
 
 import { getPsalmById, getPsalmsBySearching } from './utils/get-psalms.ts'
 
